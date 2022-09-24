@@ -1,0 +1,3 @@
+[submodule "dependencies/networks_minimal"]
+	path = dependencies/networks_minimal
+	url = git@github.com:gsiddhant/networks_minimal.git
