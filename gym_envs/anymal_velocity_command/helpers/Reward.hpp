@@ -59,7 +59,8 @@ public:
     void simStep(raisim::ArticulatedSystem *&robot, ObservationHandler &observationHandler,
                  VelocityCommand &velocityCommandHandler, const float &jointTorqueSquaredSum) {
         // Base height
-        r_baseHeight_ += squaredTanHyperbolic(robot->getBasePosition()[2] - 0.522);
+        r_baseHeight_ += squaredTanHyperbolic(robot->getBasePosition()[2] - 
+                (observationHandler.getNominalGeneralizedCoordinates()[2] + 0.025));
 
         // Base orientation
         r_baseOrientation_ += squaredTanHyperbolic(

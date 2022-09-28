@@ -24,7 +24,7 @@ environment:
     limit_yaw_rate: 1.25
 
     # Less than this is considered to be a zero velocity command
-    limit_velocity_magnitude: 0.35
+    limit_velocity_magnitude: 0.1
 
     # These values are rescaled if their sum is not equal to 1
     probability_zero_command: 0.2
@@ -60,7 +60,7 @@ environment:
     pronking:
       coeff: -1.0
     base_height:
-      coeff: -0.
+      coeff: -20.
     symmetry_z:
       coeff: -0.0
     feet_deviation:
