@@ -117,5 +117,5 @@ python scripts/anymal_velocity_command/tester.py
     └── CMakeLists.txt                  # C++ build utility
     └── setup.py                        # Executes C++ build and installs LFMC-Gym and dependencies
 
-### Authors(s)
+### Author(s)
 [Siddhant Gangapurwala](mailto:siddhant@robots.ox.ac.uk)
