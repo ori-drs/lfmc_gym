@@ -3,7 +3,9 @@
 Repository for training low-frequency motion control (LFMC) policies for 
 robotic locomotion. 
 
-Project website: https://ori-drs.github.io/lfmc/
+Project website: https://ori-drs.github.io/lfmc/ </br>
+Deployment (C++): https://github.com/ori-drs/lfmc_cval </br>
+Deployment (Python): https://github.com/ori-drs/lfmc_pyval </br>
 
 ---
 
