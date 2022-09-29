@@ -1,6 +1,9 @@
 # LFMC-Gym
 
+Repository for training low-frequency motion control (LFMC) policies for 
+robotic locomotion.
 
+---
 
 The training code is based on [Raisim](https://raisim.com/) and an adaptation of
 [RaisimGymTorch](https://raisim.com/sections/RaisimGymTorch.html). The
@@ -87,3 +90,29 @@ script.
 ```console
 python scripts/anymal_velocity_command/tester.py
 ```
+
+### Code Structure
+    └── common                          # Utilities used by modules throughout the project
+        ├── paths.py                    # Utility to handle project related paths
+    └── dependencies                    # Packages required by LFMC-Gym
+        ├── actuation_dynamics          # Actuator network for ANYmal C
+        ├── networks_minimal            # C++ based implementation of MLP and GRU networks
+    └── gym_envs                        # RL environments
+        ├── anymal_velocity_command     # The ANYmal-Velocity-Command gym environment
+            └── Environment.hpp         # Describes the main RL Gym functions
+            └── cfg,yaml                # Environment configuration and training parameters 
+    └── modules                         # Actor-Critic network architectures and helper functions
+        ├── ...
+    └── raisim_gym_torch                # Python wrapper for Raisim-C++ env and PPO implementation
+        ├── ...
+    └── resources                       # Assets used in the project
+        ├── models                      # Robot URDFs
+        ├── parameters                  # Neural network parameters (eg. ANYmal C actuator network)
+    └── scripts                         # Python scripts for training, evaluation and utilities
+        ├── anymal_velocity_command     # Training and evaluation scripts for ANYmal-Velocity-Command
+            └── runner.py               # Training script for ANYmal-Velocity-Command
+            └── tester.py               # Evaluation script that executes trained policies 
+        ├── utility                     # Scripts to extract model parameters
+            └── ...
+    └── CMakeLists.txt                  # C++ build utility
+    └── setup.py                        # Executes C++ build and installs LFMC-Gym and dependencies
