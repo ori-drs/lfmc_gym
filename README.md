@@ -1,7 +1,7 @@
 # LFMC-Gym
 
 Repository for training low-frequency motion control (LFMC) policies for 
-robotic locomotion.
+robotic locomotion. Project website: https://ori-drs.github.io/lfmc/
 
 ---
 
