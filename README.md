@@ -11,6 +11,7 @@ environment is written in C++ while the actual training happens in Python. The c
 example provided in the repository has been tuned to train a 25 Hz locomotion
 policy for the [ANYmal C](https://youtu.be/_ffgWvdZyvk) robot in roughly 30 minutes
 on a standard computer with an 8-core Intel i9-9900k CPU @ 3.6 GHz and an NVIDIA RTX 2080 Ti.
+Additional configurations for training at different frequencies will be added soon.
 
 ### Prerequisites
 The training code depnds on [Eigen](https://eigen.tuxfamily.org/index.php?title=Main_Page)
