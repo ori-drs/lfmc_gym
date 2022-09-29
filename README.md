@@ -15,7 +15,7 @@ on a standard computer with an 8-core Intel i9-9900k CPU @ 3.6 GHz and an NVIDIA
 ### Prerequisites
 The training code depnds on [Eigen](https://eigen.tuxfamily.org/index.php?title=Main_Page)
 which can be installed in Ubuntu like so:
-```console
+```bash
 sudo apt-get install libeigen3-dev
 ```
 
@@ -32,19 +32,19 @@ written in C++ called [```networks_minimal```](https://github.com/gsiddhant/netw
 and is included as a submodule. Ensure you
 use ```--recurse-submodule``` flag while cloning the repository.
 
-```console
+```bash
 git clone --recurse-submodules git@github.com:ori-drs/lfmc_gym.git
 ```
 
 Alternatively, you can clone the ```networks_minimal``` repository in 
 the dependencies directory.
-```console
+```bash
 cd lfmc_gym
 git clone git@github.com:gsiddhant/networks_minimal.git dependencies/networks_minimal
 ```
 
 We use the ```header``` branch of this repository.
-```console
+```bash
 cd dependencies/networks_minimal
 git checkout header
 cd ../..
@@ -56,20 +56,20 @@ A ```setup.py``` script is handles the necessary dependencies
 and C++ builds. It is recommended that you use a 
 [virtual environment](https://docs.python.org/3/tutorial/venv.html).
 If ```python3-venv``` is not already installed, use the following command.
-```console
+```bash
 sudo apt-get install python3-venv
 ```
 
 Assuming you are in the project root directory ```$LFMC_GYM_PATH```, 
 create and source a virtual environment. 
-```console
+```bash
 cd $LFMC_GYM_PATH
 python3 -m venv venv
 source venv/bin/activate
 ```
 
 The relevant build and installs can then be done using
-```console
+```bash
 python setup.py develop
 ```
 
@@ -78,7 +78,7 @@ The environment provided is called ```anymal_velocity_command```
 and is used to train a velocity command tracking locomotion policy.
 Before you start training, launch the ```RaisimUnity``` visualizer and
 check the Auto-connect option. The training can then be started using
-```console
+```bash
 python scripts/anymal_velocity_command/runner.py
 ```
 
@@ -87,7 +87,7 @@ good velocity tracking behavior. The checkpoints are stored
 in the ```$LFMC_GYM_PATH/data/anymal_velocity_command/<date-time>```
 directory. To test the trained policy, use the provided 
 script.
-```console
+```bash
 python scripts/anymal_velocity_command/tester.py
 ```
 
@@ -116,3 +116,6 @@ python scripts/anymal_velocity_command/tester.py
             └── ...
     └── CMakeLists.txt                  # C++ build utility
     └── setup.py                        # Executes C++ build and installs LFMC-Gym and dependencies
+
+### Authors(s)
+[Siddhant Gangapurwala](mailto:siddhant@robots.ox.ac.uk)
