@@ -1,5 +1,5 @@
-#ifndef _OKAPI_GYM_VISUALIZATION_HPP
-#define _OKAPI_GYM_VISUALIZATION_HPP
+#ifndef _LFMC_GYM_VISUALIZATION_HPP
+#define _LFMC_GYM_VISUALIZATION_HPP
 
 #include "Utility.hpp"
 
@@ -32,12 +32,12 @@ public:
                               const std::unique_ptr<raisim::RaisimServer> &server) {
         if (!visualizable_) return;
 
-        baseRPY_.e() = okapi::rotationMatrixToRPY(robot->getBaseOrientation().e());
+        baseRPY_.e() = lfmc::rotationMatrixToRPY(robot->getBaseOrientation().e());
 
         /// Heading velocity visual
         baseRPY_[0] = 0.;
         baseRPY_[1] = M_PI_2;
-        baseRotationHeadingComponent_.e() = okapi::rpyToRotationMatrix(baseRPY_.e());
+        baseRotationHeadingComponent_.e() = lfmc::rpyToRotationMatrix(baseRPY_.e());
         raisim::rotMatToQuat(baseRotationHeadingComponent_, baseQuaternionHeadingComponent_);
         server->getVisualObject("heading_velocity")->setOrientation(baseQuaternionHeadingComponent_.e());
 
@@ -54,7 +54,7 @@ public:
         /// Lateral velocity visual
         baseRPY_[0] = M_PI_2;
         baseRPY_[1] = 0.;
-        baseRotationHeadingComponent_.e() = okapi::rpyToRotationMatrix(baseRPY_.e());
+        baseRotationHeadingComponent_.e() = lfmc::rpyToRotationMatrix(baseRPY_.e());
         raisim::rotMatToQuat(baseRotationHeadingComponent_, baseQuaternionHeadingComponent_);
         server->getVisualObject("lateral_velocity")->setOrientation(baseQuaternionHeadingComponent_.e());
 
@@ -92,4 +92,4 @@ public:
 };
 
 
-#endif //_OKAPI_GYM_VISUALIZATION_HPP
+#endif //_LFMC_GYM_VISUALIZATION_HPP

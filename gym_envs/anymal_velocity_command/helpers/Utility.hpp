@@ -2,10 +2,10 @@
 // Created by siddhant on 20/07/22.
 //
 
-#ifndef _OKAPI_GYM_UTILITY_HPP
-#define _OKAPI_GYM_UTILITY_HPP
+#ifndef _LFMC_GYM_UTILITY_HPP
+#define _LFMC_GYM_UTILITY_HPP
 
-namespace okapi {
+namespace lfmc {
     std::string randomString(size_t length) {
         /// https://stackoverflow.com/a/12468109
 
@@ -97,4 +97,4 @@ namespace okapi {
     }
 }
 
-#endif //_OKAPI_GYM_UTILITY_HPP
+#endif //_LFMC_GYM_UTILITY_HPP

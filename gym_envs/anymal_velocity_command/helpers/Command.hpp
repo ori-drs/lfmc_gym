@@ -1,5 +1,5 @@
-#ifndef _OKAPI_GYM_AVC_COMMAND_HPP
-#define _OKAPI_GYM_AVC_COMMAND_HPP
+#ifndef _LFMC_GYM_AVC_COMMAND_HPP
+#define _LFMC_GYM_AVC_COMMAND_HPP
 
 
 enum VelocityCommandMode {
@@ -212,4 +212,4 @@ private:
     double desiredHeadingAngle_ = 0., robotHeadingAngle_ = 0., headingAngleOffset_ = 0.;
 };
 
-#endif //_OKAPI_GYM_AVC_COMMAND_HPP
+#endif //_LFMC_GYM_AVC_COMMAND_HPP

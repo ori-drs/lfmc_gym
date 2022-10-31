@@ -1,5 +1,5 @@
-#ifndef _OKAPI_GYM_AVC_REWARD_HPP
-#define _OKAPI_GYM_AVC_REWARD_HPP
+#ifndef _LFMC_GYM_AVC_REWARD_HPP
+#define _LFMC_GYM_AVC_REWARD_HPP
 
 
 class RewardHandler {
@@ -380,4 +380,4 @@ public:
     }
 };
 
-#endif //_OKAPI_GYM_AVC_REWARD_HPP
+#endif //_LFMC_GYM_AVC_REWARD_HPP

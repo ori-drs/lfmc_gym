@@ -1,5 +1,5 @@
-#ifndef _OKAPI_GYM_AVC_OBSERVATION_HPP
-#define _OKAPI_GYM_AVC_OBSERVATION_HPP
+#ifndef _LFMC_GYM_AVC_OBSERVATION_HPP
+#define _LFMC_GYM_AVC_OBSERVATION_HPP
 
 
 class ObservationHandler {
@@ -218,4 +218,4 @@ public:
     }
 };
 
-#endif //_OKAPI_GYM_AVC_OBSERVATION_HPP
+#endif //_LFMC_GYM_AVC_OBSERVATION_HPP
