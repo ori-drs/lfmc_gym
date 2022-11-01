@@ -90,10 +90,6 @@ public:
                 observationHandler.getNominalJointConfiguration().tail(12)
         ).cwiseMax(-M_PI_4).cwiseMin(M_PI_4).squaredNorm());
 
-//        if (velocityCommandHandler.zeroCommandMode()) {
-//            r_jointPosition_ *= 1.05f;
-//        }
-
         /// Symmetry - Z (heights of diagonal feet should match)
         robot->getFramePosition(feetFrames_[0], footPosition1_);
         robot->getFramePosition(feetFrames_[3], footPosition2_);
