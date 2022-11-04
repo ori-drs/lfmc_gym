@@ -77,7 +77,7 @@ def main():
     # Discount factor
     rl_gamma = np.exp(cfg['environment']['control_dt'] * np.log(0.5) / cfg['algorithm']['gamma_half_life_duration'])
     learning_rate_decay_gamma = np.exp(np.log(
-        cfg['algorithm']['learning_rate']['initial'] / cfg['algorithm']['learning_rate']['final']
+        cfg['algorithm']['learning_rate']['final'] / cfg['algorithm']['learning_rate']['initial']
     ) / cfg['algorithm']['learning_rate']['decay_steps'])  # x_t = x_0 * gamma ^ t
 
     if cfg['algorithm']['learning_rate']['mode'] == 'constant':
@@ -93,7 +93,7 @@ def main():
         num_mini_batches=4,
         device=device,
         log_dir=saver.data_dir,
-        learning_rate=5e-4,
+        learning_rate=cfg['algorithm']['learning_rate']['initial'],
         entropy_coef=0.0,
         learning_rate_schedule=cfg['algorithm']['learning_rate']['mode'],
         learning_rate_min=cfg['algorithm']['learning_rate']['min'],
