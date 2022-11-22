@@ -4,7 +4,7 @@
 
 //
 // Based on the code by Mathieu Geisert (https://fr.linkedin.com/in/mathieu-geisert-b290a38a)
-// And by Joonho Lee (https://github.com/junja94/anymal_science_robotics_supplementary)
+// And by Joonho Lee (https://github.com/leggedrobotics/learning_quadrupedal_locomotion_over_challenging_terrain_supplementary)
 //
 
 #ifndef _LFMC_GYM_KINEMATICS_HPP
