@@ -8,12 +8,12 @@ import numpy as np
 from common.paths import ProjectPaths
 from raisim_gym_torch.algo.ppo.networks import MultiLayerPerceptron
 
-INPUT_DIM = 48
-OUTPUT_DIM = 12
-HIDDEN_LAYERS = [256, 256]
+INPUT_DIM = 72
+OUTPUT_DIM = 16
+HIDDEN_LAYERS = [512, 256, 128]
 
-ENV_NAME = 'anymal_velocity_command'
-PARAMETERS_DIR = '2022-09-06-11-05-45'
+ENV_NAME = 'anymal_pmtg_velocity_command'
+PARAMETERS_DIR = '2022-11-16-15-26-23'
 
 OUTPUT_BIAS = True
 
@@ -28,7 +28,9 @@ def export_to_txt(state_dict, network, file_path, file_name, suffix, rename_keys
             elif 'architecture.2' in key:
                 mod_state_dict[key.replace('architecture.2', '_fully_connected_layers.1')] = state_dict[key]
             elif 'architecture.4' in key:
-                mod_state_dict[key.replace('architecture.4', '_output_layer')] = state_dict[key]
+                mod_state_dict[key.replace('architecture.4', '_fully_connected_layers.2')] = state_dict[key]
+            elif 'architecture.6' in key:
+                mod_state_dict[key.replace('architecture.6', '_output_layer')] = state_dict[key]
 
             if '_network._fully_connected_layers' in key:
                 mod_state_dict[key.replace('_network._fully_connected_layers', '_fully_connected_layers')] = \

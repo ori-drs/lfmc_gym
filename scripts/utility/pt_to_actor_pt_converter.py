@@ -8,12 +8,12 @@ import numpy as np
 from common.paths import ProjectPaths
 from raisim_gym_torch.algo.ppo.networks import MultiLayerPerceptron
 
-INPUT_DIM = 48
-OUTPUT_DIM = 12
-HIDDEN_LAYERS = [256, 256]
+INPUT_DIM = 72
+OUTPUT_DIM = 16
+HIDDEN_LAYERS = [512, 256, 128]
 
-ENV_NAME = 'anymal_velocity_command'
-PARAMETERS_DIR = '2022-09-06-11-05-45'
+ENV_NAME = 'anymal_pmtg_velocity_command'
+PARAMETERS_DIR = '2022-11-16-15-26-23'
 
 
 def export_to_actor_pt(state_dict, network, file_path, file_name, suffix, rename_keys=True):
@@ -26,7 +26,9 @@ def export_to_actor_pt(state_dict, network, file_path, file_name, suffix, rename
             elif 'architecture.2' in key:
                 mod_state_dict[key.replace('architecture.2', '_fully_connected_layers.1')] = state_dict[key]
             elif 'architecture.4' in key:
-                mod_state_dict[key.replace('architecture.4', '_output_layer')] = state_dict[key]
+                mod_state_dict[key.replace('architecture.4', '_fully_connected_layers.2')] = state_dict[key]
+            elif 'architecture.6' in key:
+                mod_state_dict[key.replace('architecture.6', '_output_layer')] = state_dict[key]
 
             if '_network._fully_connected_layers' in key:
                 mod_state_dict[key.replace('_network._fully_connected_layers', '_fully_connected_layers')] = \
@@ -35,7 +37,7 @@ def export_to_actor_pt(state_dict, network, file_path, file_name, suffix, rename
         mod_state_dict = state_dict
 
     param_save_dir = file_path[:file_path.rfind('/') + 1] + 'exported_parameters/actor_pt/'
-    param_save_name = param_save_dir + file_name[:file_name.rfind('.')] + '_' + suffix + '.txt'
+    param_save_name = param_save_dir + file_name[:file_name.rfind('.')] + '_' + suffix + '.pt'
 
     os.makedirs(param_save_dir, exist_ok=True)
 
@@ -52,14 +54,19 @@ def main():
     network = MultiLayerPerceptron(in_dim=INPUT_DIM, out_dim=OUTPUT_DIM, hidden_layers=HIDDEN_LAYERS)
     network.eval().cpu()
 
+    paths_list = list()
+
     for path, _, files in os.walk(parameters_path_dir):
         for file_name in files:
             if file_name.endswith('.pt'):
-                file_path = os.path.join(parameters_path_dir, file_name)
-                state_dict_dict = torch.load(file_path, map_location=torch.device('cpu'))
-                state_dict = state_dict_dict['actor_architecture_state_dict']
+                paths_list.append([parameters_path_dir, file_name])
 
-                export_to_actor_pt(state_dict, network, file_path, file_name, 'policy')
+    for parameters_path_dir, file_name in paths_list:
+        file_path = os.path.join(parameters_path_dir, file_name)
+        state_dict_dict = torch.load(file_path, map_location=torch.device('cpu'))
+        state_dict = state_dict_dict['actor_architecture_state_dict']
+
+        export_to_actor_pt(state_dict, network, file_path, file_name, 'policy')
 
 
 if __name__ == '__main__':

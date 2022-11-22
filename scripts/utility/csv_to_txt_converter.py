@@ -4,8 +4,8 @@ import numpy as np
 from common.paths import ProjectPaths
 
 
-ENV_NAME = 'anymal_velocity_command'
-PARAMETERS_DIR = '2022-09-06-11-05-45'
+ENV_NAME = 'anymal_pmtg_velocity_command'
+PARAMETERS_DIR = '2022-11-16-15-26-23'
 
 
 def csv_to_csv_c(filename_in, filename_out):

@@ -1,0 +1,147 @@
+seed: 1
+record_video: True    # Is considered False if <environment.render> = False below
+
+environment:
+  render: False
+  num_envs: 960
+  eval_every_n: 500
+  save_every_n: 50
+  num_threads: 'auto'
+  simulation_dt: 0.005
+  control_dt: 0.04
+  max_time: 30.0
+  log_interval: 8
+  enable_dynamics_randomization: True
+  episode_length_for_dynamics_learning: 2.0
+
+  rough_terrain: False
+  use_actuator_network: True
+
+  velocity_command:
+    limit_heading_velocity: 1.0
+    limit_lateral_velocity: 0.75
+    limit_yaw_rate: 1.25
+
+    limit_heading_velocity_final: 1.0
+    limit_lateral_velocity_final: 0.75
+    limit_yaw_rate_final: 1.25
+
+    limit_increment_reset_steps: 0
+
+    # Less than this is considered to be a zero velocity command
+    limit_velocity_magnitude: 0.3
+
+    # These values are rescaled if their sum is not equal to 1
+    probability_zero_command: 0.2
+    probability_heading_command: 0.0
+    probability_lateral_command: 0.0
+    probability_yaw_command: 0.0
+    probability_direction_command: 0.0
+    probability_constant_command: 0.8   # includes all three velocities
+
+    # Time range in seconds when the next command is sampled
+    command_sampling_time_min: 6.0
+    command_sampling_time_max: 8.0
+
+  reward:
+    base_orientation:
+      coeff: -5.0
+    base_linear_velocity_tracking:
+      coeff: 3.0
+    base_angular_velocity_tracking:
+      coeff: 1.75
+    joint_torque:
+      coeff: -0.025
+    joint_velocity:
+      coeff: -0.0
+    joint_position:
+      coeff: -0.35
+    action_smoothness:
+      coeff: -0.05
+    feet_clearance:
+      coeff: 2.5
+    feet_slip:
+      coeff: -0.5
+    pronking:
+      coeff: -3.5
+    base_height:
+      coeff: -20.
+    symmetry_z:
+      coeff: -0.0
+    feet_deviation:
+      coeff: -0.2
+    trotting:
+      coeff: 0.0
+    joint_jerk:
+      coeff: 0.0
+    vertical_linear_velocity:
+      coeff: -2.0
+    horizontal_angular_velocity:
+      coeff: -0.2
+    feet_phase:
+      coeff: -2.25
+
+  observation_indices:
+    rotation: [ 0, 3 ]
+    joint_position: [ 3, 15 ]
+    angular_velocity: [ 15, 18 ]
+    joint_velocity: [ 18, 30 ]
+    linear_velocity: [ 30, 33 ]
+    command: [ 33, 36 ]
+    joint_position_error: [ 36, 48 ]
+    previous_action: [ 48, 64 ]
+    feet_phase_sin: [ 64, 68 ]
+    feet_phase_cos: [ 68, 72 ]
+
+    positions: [ 0, 15 ]
+    velocities: [ 15, 33 ]
+
+    actor_input: [ 0, 72 ]
+    critic_input: [ 0, 72 ]
+
+    recurrent_input: [ 0, 72 ]
+
+    dynamics_encoding_input: [ 0, 33 ]
+    dynamics_inference_output: [ 0, 33 ]
+
+    synchronous_estimation: None
+
+  curriculum:
+    reward_factor: 1.
+    reward_advance_rate: 1.
+
+module:
+  type: 'dense'
+
+  actor:
+    # Choose from ['tanh', 'leaky_relu', 'softsign']
+    activation: 'leaky_relu'
+    hidden: [ 512, 256, 128 ]
+
+  critic:
+    # Choose from ['tanh', 'leaky_relu', 'softsign']
+    activation: 'leaky_relu'
+    hidden: [ 512, 256, 128 ]
+
+  properties:
+    dense:
+      shuffle_batch: True
+      predict_values_during_act: False
+
+      initial_action_std: 1.0
+      compute_jacobian: True
+
+      network_weights_gain: 1.414
+
+algorithm:
+  update_steps: 12
+  gamma_half_life_duration: 7.0 # seconds
+
+  learning_rate:
+    initial: 5e-4
+    final: 2.5e-4
+
+    min: 1e-4
+    decay_steps: 20000
+
+    mode: 'decay'
