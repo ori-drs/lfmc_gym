@@ -73,7 +73,7 @@ class CMakeBuild(build_ext):
 
 setup(
     name='lfmc_gym',
-    version='0.1',
+    version='0.2',
     author='Siddhant Gangapurwala',
     packages=find_packages(),
     author_email='siddhant@gangapurwala.com',
