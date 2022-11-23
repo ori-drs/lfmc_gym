@@ -101,7 +101,7 @@ python setup.py develop
 ```
 
 ### Usage
-The environment provided is called ```anymal_velocity_command```
+The main environment provided is called ```anymal_velocity_command```
 and is used to train a velocity command tracking locomotion policy.
 Before you start training, launch the ```RaisimUnity``` visualizer and
 check the Auto-connect option. The training can then be started using
@@ -118,31 +118,42 @@ script.
 python scripts/anymal_velocity_command/tester.py
 ```
 
+Another environment called ```anymal_pmtg_velocity_command``` has now been
+added. Policies obtained using this approach were observed to be more stable 
+than policies which generate the joint position commands directly. To train
+policies using this RL environment, follow the method as before except use
+the scripts provided in ```$LFMC_GYM_PATH/scripts/anymal_pmtg_velocity_command```
+directory.
+
+
 ### Code Structure
-    └── common                          # Utilities used by modules throughout the project
-        ├── paths.py                    # Utility to handle project related paths
-    └── dependencies                    # Packages required by LFMC-Gym
-        ├── actuation_dynamics          # Actuator network for ANYmal C
-        ├── networks_minimal            # C++ based implementation of MLP and GRU networks
-    └── gym_envs                        # RL environments
-        ├── anymal_velocity_command     # The ANYmal-Velocity-Command gym environment
-            └── Environment.hpp         # Describes the main RL Gym functions
-            └── cfg,yaml                # Environment configuration and training parameters 
-    └── modules                         # Actor-Critic network architectures and helper functions
+    └── common                            # Utilities used by modules throughout the project
+        ├── paths.py                      # Utility to handle project related paths
+    └── dependencies                      # Packages required by LFMC-Gym
+        ├── actuation_dynamics            # Actuator network for ANYmal C
+        ├── networks_minimal              # C++ based implementation of MLP and GRU networks
+    └── gym_envs                          # RL environments
+        ├── anymal_velocity_command       # The ANYmal-Velocity-Command gym environment
+            └── Environment.hpp           # Describes the main RL Gym functions
+            └── cfg,yaml                  # Environment configuration and training parameters 
+        ├── anymal_pmtg_velocity_command  # The ANYmal-PMTG-Velocity-Command gym environment
+            └── Environment.hpp           # Describes the main RL Gym functions
+            └── cfg,yaml                  # Environment configuration and training parameters 
+    └── modules                           # Actor-Critic network architectures and helper functions
         ├── ...
-    └── raisim_gym_torch                # Python wrapper for Raisim-C++ env and PPO implementation
+    └── raisim_gym_torch                  # Python wrapper for Raisim-C++ env and PPO implementation
         ├── ...
-    └── resources                       # Assets used in the project
-        ├── models                      # Robot URDFs
-        ├── parameters                  # Neural network parameters (eg. ANYmal C actuator network)
-    └── scripts                         # Python scripts for training, evaluation and utilities
-        ├── anymal_velocity_command     # Training and evaluation scripts for ANYmal-Velocity-Command
-            └── runner.py               # Training script for ANYmal-Velocity-Command
-            └── tester.py               # Evaluation script that executes trained policies 
-        ├── utility                     # Scripts to extract model parameters
+    └── resources                         # Assets used in the project
+        ├── models                        # Robot URDFs
+        ├── parameters                    # Neural network parameters (eg. ANYmal C actuator network)
+    └── scripts                           # Python scripts for training, evaluation and utilities
+        ├── anymal_velocity_command       # Training and evaluation scripts for ANYmal-Velocity-Command
+            └── runner.py                 # Training script for ANYmal-Velocity-Command
+            └── tester.py                 # Evaluation script that executes trained policies 
+        ├── utility                       # Scripts to extract model parameters
             └── ...
-    └── CMakeLists.txt                  # C++ build utility
-    └── setup.py                        # Executes C++ build and installs LFMC-Gym and dependencies
+    └── CMakeLists.txt                    # C++ build utility
+    └── setup.py                          # Executes C++ build and installs LFMC-Gym and dependencies
 
 ### Author(s)
 [Siddhant Gangapurwala](mailto:siddhant@robots.ox.ac.uk)
