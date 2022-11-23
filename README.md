@@ -33,6 +33,12 @@ policy for the [ANYmal C](https://youtu.be/_ffgWvdZyvk) robot in roughly 30 minu
 on a standard computer with an 8-core Intel i9-9900k CPU @ 3.6 GHz and an NVIDIA RTX 2080 Ti.
 Additional configurations for training at different frequencies will be added soon.
 
+Another environment, based on [Phase Modulating Trajectory Generators (PMTGs)](https://arxiv.org/pdf/1910.02812.pdf), 
+has also been added. This code is based on the work of Lee et al. on 
+[Learning Quadrupedal Locomotion over Challenging Terrain](https://leggedrobotics.github.io/rl-blindloco/) and
+is an adaptation of [Mathieu Geisert's](https://www.linkedin.com/in/mathieu-geisert-b290a38a)
+implementation of the trajectory generation module.
+
 ### Prerequisites
 The training code depnds on [Eigen](https://eigen.tuxfamily.org/index.php?title=Main_Page)
 which can be installed in Ubuntu like so:
